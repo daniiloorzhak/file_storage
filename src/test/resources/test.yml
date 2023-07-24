@@ -1,0 +1,21 @@
+spring:
+  flyway:
+    enabled: true
+yandex:
+  access:
+    key:
+      id: "YCAJEAyEFjpF7V-oUkrQqp4C9"
+  secret:
+    access:
+      key: "YCMWwP5CTCdVAxk5AG-t28xzL2ME7_ifyqaEwwIU"
+  region: "ru-central1"
+  serviceEndpoint: "storage.yandexcloud.net"
+  bucket:
+    name: "cft-project"
+
+aes-256:
+  secret: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+jwt:
+  exprireSecs: 604800
+  secret: "asdts9g874wh54lwnODGDhdslghndass7gs42t3983y"
