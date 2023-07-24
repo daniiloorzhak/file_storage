@@ -1,24 +1,20 @@
 package ru.oorzhak.filestorage.controller;
 
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.oorzhak.filestorage.dto.AccountDTO;
 import ru.oorzhak.filestorage.models.Account;
 import ru.oorzhak.filestorage.service.AccountService;
-
-import jakarta.validation.Valid;
 import ru.oorzhak.filestorage.util.JwtUtil;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * API для работы с пользователями
@@ -27,9 +23,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "accounts", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountController {
     private final AccountService accountService;
-
     private final ModelMapper modelMapper;
-
     private final AuthenticationManager authenticationManager;
 
     @Autowired

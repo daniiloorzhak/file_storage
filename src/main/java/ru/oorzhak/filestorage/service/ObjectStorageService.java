@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.InputStream;
 
 public interface ObjectStorageService {
-
     PutObjectResult upload(Long fileId, File file);
-
-    public S3Object download(String path, String fileName);
+    S3Object download(String path, String fileName);
 }

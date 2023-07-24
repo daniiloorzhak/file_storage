@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.oorzhak.filestorage.dto.catalogue.CatalogueChildDTO;
 import ru.oorzhak.filestorage.dto.catalogue.CatalogueResponseDTO;
 import ru.oorzhak.filestorage.dto.catalogue.CatalogueRootDTO;
-import ru.oorzhak.filestorage.exception.catalogue.CatalogueNotFoundException;
-import ru.oorzhak.filestorage.exception.catalogue.ChildCatalogueAlreadyExists;
+import ru.oorzhak.filestorage.exception.CatalogueNotFoundException;
+import ru.oorzhak.filestorage.exception.ChildCatalogueAlreadyExists;
 import ru.oorzhak.filestorage.models.Catalogue;
 import ru.oorzhak.filestorage.repository.CatalogueRepository;
 import ru.oorzhak.filestorage.repository.UserRepository;
@@ -32,13 +32,11 @@ public class CatalogueServiceImpl implements CatalogueService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public CatalogueResponseDTO findUserByUsername(String username) {
         return null;
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<CatalogueResponseDTO> findAll() {
 
         return catalogueRepository.findAll().stream().map( catalogue -> {

@@ -19,7 +19,6 @@ import ru.oorzhak.filestorage.security.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-
     private final JwtTokenFilter jwtTokenFilter;
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -54,19 +53,14 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .cors().and().csrf().disable()
-                .authorizeHttpRequests().requestMatchers("/login").permitAll()
-                .anyRequest().authenticated()
+                .authorizeHttpRequests()
+                    .requestMatchers("/login").permitAll()
+                    .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-
         http.authenticationProvider(authenticationProvider());
-
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
-
-
-
 }
 

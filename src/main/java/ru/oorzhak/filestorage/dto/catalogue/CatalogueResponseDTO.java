@@ -1,10 +1,11 @@
 package ru.oorzhak.filestorage.dto.catalogue;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CatalogueResponseDTO {
     private Long id;
     private String name;

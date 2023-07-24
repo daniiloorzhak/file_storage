@@ -27,20 +27,18 @@ import java.util.stream.Collectors;
  */
 @RestControllerAdvice
 public class ErrorControllerAdvice extends ResponseEntityExceptionHandler {
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-//        String message = ex.getBindingResult().getFieldErrors().stream()
-//                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-//                .collect(Collectors.joining(", "));
-//
-//        Optional<HttpStatus> httpStatus = Optional.of(HttpStatus.resolve(status.value()));
-//        httpStatus.orElseThrow(RuntimeException::new);
-//
-//        Map<String, Object> body = body(httpStatus.get(), ex);
-//        body.put("message", message);
-//        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-        return null;
+        String message = ex.getBindingResult().getFieldErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.joining(", "));
+
+        Optional<HttpStatus> httpStatus = Optional.ofNullable(HttpStatus.resolve(status.value()));
+        httpStatus.orElseThrow(RuntimeException::new);
+
+        Map<String, Object> body = body(httpStatus.get(), ex);
+        body.put("message", message);
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserNotFoundException.class)

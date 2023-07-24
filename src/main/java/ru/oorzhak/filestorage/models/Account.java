@@ -1,8 +1,6 @@
 package ru.oorzhak.filestorage.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import jakarta.persistence.*;
@@ -17,12 +15,15 @@ import java.util.Set;
 @ToString
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
